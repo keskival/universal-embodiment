@@ -86,7 +86,7 @@ produces a self-supervised token sequence which incorporates intents and a sea o
 
 ## Citing
 
-Recursive Self-improvement Suite
+Universal Embodiment
 
 ```
 @article{keskival2024universal,
