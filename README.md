@@ -170,6 +170,8 @@ Asynchronous token sequences are driven by a stream of observation tokens. To su
 
 For example intent tokens aren't inherently in plain human language; they are just good representations of intents. There are luckily a lot of existing art in translating such token representations into human language and back, for example by CLIP embeddings, or by training a model mapping large multimodal model descriptions of intents of agents in scenes into intent representations in the universal embodiment system.
 
+Translation from actions to raw control signals also requires these sorts of translations, and also from raw observation signals to observation tokens and back.
+
 ## Citing
 
 Universal Embodiment
