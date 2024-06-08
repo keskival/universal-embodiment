@@ -86,6 +86,64 @@ Mining intents can be done in a self-supervised process which:
 Doing the above requires some clever tricks which I haven't yet written down here, but it
 produces a self-supervised token sequence which incorporates intents and an ocean of agency in an organic and controllable fashion.
 
+## Intent-based Tokenization
+
+One of the main contributions of this work is intent-based tokenization which serves an analogous purpose to
+instruct-tuning or instruct-training of large language models. In instruct-tuning the language sequences are
+separated into instruction and instruction following. By convention, the instruction comes first and is marked
+as a message from the user (or in some cases system). The tokens aren't otherwise specially marked but their role
+is clear from the context. The data is organized so that the instruction following tokens are conditioned by
+the instruction tokens so that they provide controllability.
+
+We need to extend this into robotic control in a more universalist fashion.
+
+Let's first consider a single agent. In practical use we'll have an interlaced sequences with multiple agents,
+but the general idea remains the same, and tokens for one recognized agent will have an intrinsic bond to other
+tokens relating to that agency. We'll later get into how the tokens are negotiated between different agencies
+in competitive optimization.
+
+Instead of language based instructions, or indeed, intents, we'll simply denote tokens into specific classes.
+It becomes a bit more complex than in plain instruction following, but this complexity serves a purpose.
+We will have the following kinds of tokens forming a sequence of agentic action:
+1. AGENT (a sequential embedding of who or what this is: Encodes the identity, degrees of freedom, observational constraints, appearance, ...)
+2. INTENT (a sequential embedding of what is the current intent of the agent: Encodes the immediate goals of the agent.)
+3. ACTION (a sequential embedding limited by an information bottleneck, which is roughly analogous to a chosen action.)
+4. OBSERVATION (a sequential embedding describing the world and changes in it.)
+
+These tokens have inherent relations to each others, and inherent causations and correlations which can be used to train
+these embeddings and sequences with self-supervision:
+1. The AGENT, INTENT and OBSERVATION token sequences from the past wholly condition the subsequent ACTION tokens of the agent in question.
+2. OBSERVATION tokens wholly condition all the raw signal data received at the moment and in the immediate future.
+3. ACTION tokens wholly condition the OBSERVATION tokens which relate to the agent, which basically segment the regions
+   of the observed signals which can be predicted by the agent's actions. This produces an outline of the agent's span in the signals,
+   no matter if imagery, sound, or anything else. ACTION tokens are inherently causal, and predict the changes in the signals observed.
+
+The above list of relations is not exhaustive yet.
+
+Using the above relations we can form self-supervised objectives which make sure these tokens converge into meaningful representations.
+
+## Multi-agent Deconflicting
+
+A single agent typically affects only its immediate locality, whether it's in image space, or in any other signaling modality,
+depending on the degrees of freedom and presence of the agent. To define an optimizing model which is able to converge
+into representing separate agents realistically, it is necessary to have competitive optimization objectives in a way where
+ACTION tokens by one agent are predictive of some region in the observed signals, while ACTION tokens of another agent are less so.
+
+This strength of predictive power of ACTION tokens in span of signal localities will define the reaches of discrete agents.
+
+Overall, the system will be built so that observing media or signals from the living world, it is able to recognize all the different
+agents, whether hierarchical or not, and their inherent intents and actions in the space of those signals, and ultimately
+generalize the experience it so extracts into ego control models.
+
+## Ego Control
+
+How do we "instruct" such a model? Simply, we inject intents, and observe what changes in the world these intents produce through
+the actions they induce. This lets an embodied agent learn of its own reach, while utilizing experience mined from observing other
+agents in the world.
+
+In addition to actions, we need to project these actions into practical hardware control signals. This is a still open problem, but certainly
+doable with a separate model which tries to learn the control language and translate the actions into that.
+
 ## Citing
 
 Universal Embodiment
