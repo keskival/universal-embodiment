@@ -18,6 +18,13 @@ This allows natural recognition of degrees of freedom and the reach of ego in an
 It also allows empathy, better prediction of what others plan and how they will act, and true collaboration in a living world.
 The living world is an ocean of agency, not a single-player game for which classic RL was designed for.
 
+## Applications
+
+This framework has applications in all complex and unstructured environments, at least in following domains:
+- Space, ocean, underground exploration
+- Disasters and rescue
+- Military and defence
+
 ## General Principles
 
 All highly developed animals learn from the experience of others, whether others are of the same species, individuals of totally
