@@ -148,6 +148,16 @@ agents in the world.
 In addition to actions, we need to project these actions into practical hardware control signals. This is a still open problem, but certainly
 doable with a separate model which tries to learn the control language and translate the actions into that.
 
+## Asynchronicity
+
+Classical reinforcement learning is typically formulated as a synchronous sequence of state-action reward, indeed derivimg the name of the SARSA algorithm from those.
+Here, we instead want the token sequences to be asynchronous.
+Asynchronous token sequences are driven by a stream of observation tokens. To support predictive objectives, the model can emit other tokens of agents, intents and actions. This is a simple asynchronous decomposition of causal dynamics in the sequence of observation tokens.
+
+## Translation of Tokens
+
+For example intent tokens aren't inherently in plain human language; they are just good representations of intents. There are luckily a lot of existing art in translating such token representations into human language and back, for example by CLIP embeddings, or by training a model mapping large multimodal model descriptions of intents of agents in scenes into intent representations in the universal embodiment system.
+
 ## Citing
 
 Universal Embodiment
