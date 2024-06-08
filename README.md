@@ -40,6 +40,40 @@ Learning control policies should happen in-context rather than on the level of b
 learning and adapting robotic control models faster than with engineered learning rules, which allows quick adaptation to new or changed
 embodiments.
 
+## Main Challenges
+
+### 1. Data from a living world
+
+Data is where it all starts. How do we collect and refine a lot of multimodal
+data which represents oceans of agency and intent.
+
+Some initial sources:
+- Nature documentaries
+- Traffic videos
+- Simulations and synthetic data
+
+### 2. Real-time high-volume data tokenization
+
+Embodied data and control signals are asynchronous, real-time and of a very
+high volume. How to handle these, considering the context-length constraints
+of existing large models.
+
+- Hierarchical contexts, where higher level contexts are appended only occasionally based on lower level context token streams.
+- Registries where the contexts can read and write long-term data.
+- More modern long-context large model architectures.
+
+### 3. In-context learning of robotic control
+
+To support in-context learning of robotic control, we'll need ways to both
+represent agency and control in multi-modal token sequences, but also something
+analogous to instruct-tuning (or nowadays instruct training) in LLMs, which allows
+us to instruct, command, or intervene to the token sequences to
+direct them towards ego level intents and goals.
+
+- Multi-modal asynchronous token sequences representing both observations and control signals.
+- Generalist encoding of control signals spanning line level protocols, TCP/IP, protobuf and everything.
+- Intent-encoding the data, so that overriding intents by token level interventions allows controllability.
+
 ## Reference
 
 Recursive Self-improvement Suite
