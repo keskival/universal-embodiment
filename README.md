@@ -84,7 +84,7 @@ Mining intents can be done in a self-supervised process which:
 3. Closes the loop by using the actions to predict the next state of the world in observable signals.
 
 Doing the above requires some clever tricks which I haven't yet written down here, but it
-produces a self-supervised token sequence which incorporates intents and a sea of agency in an organic and controllable fashion.
+produces a self-supervised token sequence which incorporates intents and an ocean of agency in an organic and controllable fashion.
 
 ## Citing
 
