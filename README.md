@@ -115,8 +115,8 @@ We will have the following kinds of tokens forming a sequence of agentic action:
 These tokens have inherent relations to each others, and inherent causations and correlations which can be used to train
 these embeddings and sequences with self-supervision:
 1. The AGENT, INTENT and OBSERVATION token sequences from the past wholly condition the subsequent ACTION tokens of the agent in question.
-2. OBSERVATION tokens wholly condition all the raw signal data received at the moment and in the immediate future.
-3. ACTION tokens wholly condition the OBSERVATION tokens which relate to the agent, which basically segment the regions
+2. OBSERVATION tokens wholly condition an estimate for all the raw signal data received at the moment and in the immediate future. The raw signal data also conditions the observation tokens.
+3. ACTION tokens wholly condition the estimate of the causally following OBSERVATION tokens which relate to the agent, which basically segment the regions
    of the observed signals which can be predicted by the agent's actions. This produces an outline of the agent's span in the signals,
    no matter if imagery, sound, or anything else. ACTION tokens are inherently causal, and predict the changes in the signals observed.
 
