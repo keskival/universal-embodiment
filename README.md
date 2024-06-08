@@ -143,6 +143,10 @@ Overall, the system will be built so that observing media or signals from the li
 agents, whether hierarchical or not, and their inherent intents and actions in the space of those signals, and ultimately
 generalize the experience it so extracts into ego control models.
 
+Multi-agent competitive deconflicting is a set of self-supervised objectives which allow the system to separate the explaining factors of the observation dynamics into a set of agent representations. Agent representations impose coherence on the intents which are conditioned by the agent and its history, which in turn impose coherence on the actions for each agent. Additionally, depending on signal modalities, there might be a need to impose connectedness and locality objectives for each agent.
+
+Hierarchical agents can be represented as compositions conditioned by the higher level representations.
+
 ## Ego Control
 
 How do we "instruct" such a model? Simply, we inject intents, and observe what changes in the world these intents produce through
