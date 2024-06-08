@@ -18,6 +18,8 @@ This allows natural recognition of degrees of freedom and the reach of ego in an
 It also allows empathy, better prediction of what others plan and how they will act, and true collaboration in a living world.
 The living world is an ocean of agency, not a single-player game for which classic RL was designed for.
 
+Since large models are data-defined, and this isn't an exception, this could be described as a scheme to synthesize intemtional agentic token sequences from observing the living world across multiple modalities.
+
 ## Applications
 
 This framework has applications in all complex and unstructured environments, at least in following domains:
