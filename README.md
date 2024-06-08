@@ -128,6 +128,8 @@ If you know classical reinforcement learning, you should be reminded of SAR-sequ
 
 If you notice that we're trying to decompose dynamics in observations into low dimensional representations (actions, like in DeepMind Genie), you can see how ACTION tokens emerge. If you notice that we need to separate different agents, you'll see how the AGENT tokens support this separation. And in between sit the INTENT tokens allowing for controllability, you'll see this isn't ad-hoc, but a clean system which has only the representations which are needed and nothing superfluous.
 
+All that we need to get such controllability over universal embodiments is to define generative data processes which generate these kinds of sequences, and we'll do that with a set of self-supervised objectives in an inherently generative sequence model.
+
 ## Multi-agent Deconflicting
 
 A single agent typically affects only its immediate locality, whether it's in image space, or in any other signaling modality,
