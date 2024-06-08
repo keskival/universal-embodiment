@@ -74,6 +74,16 @@ direct them towards ego level intents and goals.
 - Generalist encoding of control signals spanning line level protocols, TCP/IP, protobuf and everything.
 - Intent-encoding the data, so that overriding intents by token level interventions allows controllability.
 
+Intent encoding is tricky in practice because we need to mine the intents from other agents to be able to encode them.
+
+Mining intents can be done in a self-supervised process which:
+1. Recognizes agents and their degrees of freedom and perception constraints,
+2. Recognizes their intents and uses those, and their estimated perception to predict their actions,
+3. Closes the loop by using the actions to predict the next state of the world in observable signals.
+
+Doing the above requires some clever tricks which I haven't yet written down here, but it
+produces a self-supervised token sequence which incorporates intents and a sea of agency in an organic and controllable fashion.
+
 ## Citing
 
 Recursive Self-improvement Suite
