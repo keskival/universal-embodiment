@@ -74,7 +74,7 @@ direct them towards ego level intents and goals.
 - Generalist encoding of control signals spanning line level protocols, TCP/IP, protobuf and everything.
 - Intent-encoding the data, so that overriding intents by token level interventions allows controllability.
 
-## Reference
+## Citing
 
 Recursive Self-improvement Suite
 
