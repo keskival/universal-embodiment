@@ -132,6 +132,8 @@ If you notice that we're trying to decompose dynamics in observations into low d
 
 All that we need to get such controllability over universal embodiments is to define generative data processes which generate these kinds of sequences, and we'll do that with a set of self-supervised objectives in an inherently generative sequence model.
 
+All the tokens form one sequence, but certain objectives mask out tokens of specific types to impose correct information flows.
+
 ## Multi-agent Deconflicting
 
 A single agent typically affects only its immediate locality, whether it's in image space, or in any other signaling modality,
