@@ -40,6 +40,8 @@ Learning control policies should happen in-context rather than on the level of b
 learning and adapting robotic control models faster than with engineered learning rules, which allows quick adaptation to new or changed
 embodiments.
 
+This isn't traditional reinforcement learning guided by sparse rewards. It would be madness to try to do sparse reward odelling for the entire living world. Instead we'll model the reinforcement through intents which don't suffer from the same problems as reward-based reinforcement learning does.
+
 ## Main Challenges
 
 ### 1. Data from a living world
