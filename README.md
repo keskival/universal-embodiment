@@ -261,6 +261,7 @@ Universal Embodiment
 ## References
 
 - [Genie: Generative Interactive Environments](https://deepmind.google/research/publications/60474/)
+- [Recognizing Everything from All Modalities at Once: Grounded Multimodal Universal Information Extraction](https://arxiv.org/abs/2406.03701v1)
 
 ## Related Posts
 
