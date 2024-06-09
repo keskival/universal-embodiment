@@ -230,6 +230,22 @@ coherent locality in the input signals.
 The sequence of AGENT tokens associated to the previous OBSERVATION token will condition the next sequence of AGENT tokens to conserve
 the agents over time.
 
+### Action Tokenization
+
+Similarly to DeepMind Genie, which has a reconstructive loss objective for a model generating the dynamics of a single-player game views from a single, inferred, low-dimensional encoding of an action, we will do the same but for multiple agents.
+
+An ACTION token is always tied to a specific pair of AGENT tokens across sequential OBSERVATION tokens, so that the ACTION represents the information required to represent the change in the AGENT token over time.
+
+It does this by basic information bottleneck and self-supervised reconstructive objectives.
+
+### Intent Tokenization
+
+Finally as we have grounding for OBSERVATION, AGENT and ACTION, we'll ground the INTENT tokens by forcing their representations to predict the sequences of ACTION tokens, while being consistent over time for a single agent.
+
+These tokens provide controllability within context, so that injecting INTENT tokens to the ego agent will induce subsequent ACTION tokens, but also en evolution of coherent INTENT tokens which conserve the original controlling intent but also react to the changing circumstances in the world.
+
+Unintervented INTENT tokens will evolve over time similarly as agent intents evolve in the training materials.
+
 ## Citing
 
 Universal Embodiment
