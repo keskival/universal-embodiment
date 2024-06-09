@@ -172,6 +172,64 @@ For example intent tokens aren't inherently in plain human language; they are ju
 
 Translation from actions to raw control signals also requires these sorts of translations, and also from raw observation signals to observation tokens and back.
 
+## Objectives
+
+### Basic Predictive Observation
+
+The sensory input pipeline is complicated by the fact that it is asynchronous, interlaced multimodal stream which
+needs to be encoded as dense representations first before combining them into world state observations.
+
+First of all, the sensory input pipeline is encoded into simple modality-dependent autoencoding representations.
+That means that we have an encoder and a decoder for each sensory modality which can produce an embedding from the
+signal slice or frame, and conversely, can produce a signal slice from the embedding, trained by a simple
+reconstruction loss. This is just to compress the otherwise high redundancy signals.
+
+We want to go further than that though. We want to represent the observation stream as sequences of tokens which
+are independent of modality, while these encoders and decoders and their representations are modality dependent.
+We also want to make the observation stream tokens represent surprise or change.
+
+The OBSERVATION token is determined by the previous OBSERVATION tokens and the input data stream encoded
+in patches or slices in small representations. This means it represents a change or delta to what the previous
+OBSERVATION token sequence already encoded, in a multi-modal fashion, conditioned on tokens from any modality.
+Conversely, we'll have a decoder side for this as well, producing the original dense input representation
+from the sequence of OBSERVATION tokens. The decoder produces any of the next slice representations in any modality.
+
+The sequence of the observation tokens must be such that they predict the current and the following observations
+as well as possible.
+This forces the first observation tokens to encode the general whole of the observational context, and the subsequent
+ones encoding the dynamics and the changes to that.
+
+To make the token representations forecast oriented and causal, they will need to not only predict the next frames
+and signal slices, but the subsequent ones as well. Hence we'll condition the encoder with the time index as well,
+so that it is able to do some amount of limited forecast to the future as well, just based on the information encoded
+in the OBSERVATION token. Conversely, this delayed reconstruction loss forces the OBSERVATION token encode in as much
+dynamics of the world as possible.
+
+OBSERVATION tokens are rated to be synchronous with the input data slices coming in, a constant number of OBSERVATION
+tokens corresponding to the newest sensory information packet. This forms the basic clock of the system, and everything
+else is dependent on the input token cadence.
+
+### Agent Tokenization
+
+AGENT tokens decompose the OBSERVATION tokens into regions where each agent has presence and reach. After each OBSERVATION
+token, we will induce a set of AGENT tokens which represent the agents present in the observable world.
+Each of these AGENT tokens will attend to the previous OBSERVATION token sequence in a competitive fashion so that best matching
+AGENT tokens will claim specific OBSERVATION tokens.
+
+This means that we'll force the AGENT token to represent the appearance of a single agent (among other things). The AGENT
+token needs to be able to condition an decoder which produces the tokens it attends to, and the set of all AGENT token decoders
+need to be able to produce the whole scene, that is, a sequence of OBSERVATION tokens relating to the current world.
+Since the sequence of OBSERVATION tokens probably cannot be made exactly unambiguous, we'll need to use a reconstruction loss
+which depends on the reconstruction of the current scene in the sensory input signal domains.
+
+The scheme has competing objectives: First of all, all AGENT tokens need to contain information for reconstruction of the whole scene.
+Additionally, since each AGENT token can only encode so much presence information in the scene, they will need to distribute
+the representational capacity between themselves in a competitive fashion, so that each AGENT token will come to represent some
+coherent locality in the input signals.
+
+The sequence of AGENT tokens associated to the previous OBSERVATION token will condition the next sequence of AGENT tokens to conserve
+the agents over time.
+
 ## Citing
 
 Universal Embodiment
