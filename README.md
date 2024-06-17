@@ -248,6 +248,14 @@ These tokens provide controllability within context, so that injecting INTENT to
 
 Unintervented INTENT tokens will evolve over time similarly as agent intents evolve in the training materials.
 
+## Suitable Datasets
+
+A dataset is suitable if it has video or any other signal representations of agents in physical interactions.
+
+More agents is better. Nature videos, traffic videos, military operations videos, ...
+
+- [DRONEVISION: A DATASET OF AERIAL VIDEOS FOR COMPUTER VISION APPLICATIONS](https://ieee-dataport.org/documents/dronevision-dataset-aerial-videos-computer-vision-applications)
+
 ## Citing
 
 Universal Embodiment
