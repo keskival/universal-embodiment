@@ -250,9 +250,9 @@ Unintervented INTENT tokens will evolve over time similarly as agent intents evo
 
 ## Suitable Datasets
 
-A dataset is suitable if it has video or any other signal representations of agents in physical interactions.
+A dataset is suitable if it has video or any other preferably multimodal signal representations of agents in physical interactions.
 
-More agents is better. Nature videos, traffic videos, military operations videos, ...
+More agents is better. Nature videos, traffic videos, sports, military operations videos, ...
 
 - [DRONEVISION: A DATASET OF AERIAL VIDEOS FOR COMPUTER VISION APPLICATIONS](https://ieee-dataport.org/documents/dronevision-dataset-aerial-videos-computer-vision-applications)
 
