@@ -254,9 +254,9 @@ A dataset is suitable if it has video or any other preferably multimodal signal 
 
 More agents is better. Nature videos, traffic videos, sports, military operations videos, ...
 
-- [DRONEVISION: A DATASET OF AERIAL VIDEOS FOR COMPUTER VISION APPLICATIONS](https://ieee-dataport.org/documents/dronevision-dataset-aerial-videos-computer-vision-applications)
+- [DRONEVISION: A DATASET OF AERIAL VIDEOS FOR COMPUTER VISION APPLICATIONS](https://ieee-dataport.org/documents/dronevision-dataset-aerial-videos-computer-vision-applications) (requires paid subscription)
 - [Sports Videos in the Wild (SVW): A Video Dataset for Sports Analysis](https://cvlab.cse.msu.edu/project-svw.html)
-
+- [Awesome Robotics Datasets collection](https://github.com/mint-lab/awesome-robotics-datasets)
 
 ## Citing
 
