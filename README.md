@@ -27,6 +27,13 @@ This framework has applications in all complex and unstructured environments, at
 - Disasters and rescue
 - Military and defence
 
+## How to Support
+
+If you are interested in investing into this project which currently proceeds on spare time basis,
+contact the author Tero Keski-Valkama (tero.keskivalkama@gmail.com). To scale up the effort we
+will need compute and people, which means a capital investment in the scale of 16 M€ to get properly
+started, and 160 M€ for a runway of 3-5 years to scale up and build prototypes.
+
 ## General Principles
 
 All highly developed animals learn from the experience of others, whether others are of the same species, individuals of totally
