@@ -17,3 +17,6 @@ Since the volume of data is very small, we will need to make compromises
 on the level of quality and utility we expect to achieve,
 and we will for example utilise existing image backbones
 for frame embeddings. We will also actively hunt for more data.
+
+Since the model structure represents some additional but realistic inductive biases, it should allow us to
+work with a bit fewer data.
