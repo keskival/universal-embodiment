@@ -31,7 +31,7 @@ This framework has applications in all complex and unstructured environments, at
 
 If you are interested in investing into this project which currently proceeds on spare time basis,
 contact the author [Tero Keski-Valkama](https://www.linkedin.com/in/terokeskivalkama/). To scale up the effort we
-will need compute and people, which means a capital investment in the scale of 16 M€ to get properly
+will need data, compute and people, which means a capital investment in the scale of 16 M€ to get properly
 started, and 160 M€ for a runway of 3-5 years to scale up and build prototypes.
 
 We have a founder team already set up.
