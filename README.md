@@ -64,6 +64,7 @@ data which represents oceans of agency and intent.
 
 Some initial sources:
 - Nature documentaries
+- Sports videos
 - Traffic videos
 - Simulations and synthetic data
 
@@ -144,6 +145,10 @@ If you notice that we're trying to decompose dynamics in observations into low d
 All that we need to get such controllability over universal embodiments is to define generative data processes which generate these kinds of sequences, and we'll do that with a set of self-supervised objectives in an inherently generative sequence model.
 
 All the tokens form one sequence, but certain objectives mask out tokens of specific types to impose correct information flows.
+
+So, the objectives become autoregressive prediction objectives with selective masking imposing structure and multiagentic inductive bias.
+
+Similarly as with multimodal large models tokens can have different types based on modality, here tokens have different types which affect their masking-based autoregressive structure. It is an extension of modality-based token typing.
 
 ## Multi-agent Deconflicting
 
