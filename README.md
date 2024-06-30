@@ -258,6 +258,10 @@ More agents is better. Nature videos, traffic videos, sports, military operation
 - [Sports Videos in the Wild (SVW): A Video Dataset for Sports Analysis](https://cvlab.cse.msu.edu/project-svw.html)
 - [Awesome Robotics Datasets collection](https://github.com/mint-lab/awesome-robotics-datasets)
 
+## Phase 1
+
+See here: [Phase 1](./phase1.md)
+
 ## Citing
 
 Universal Embodiment
