@@ -191,7 +191,8 @@ on the type of the token to predict, we'll mask specific tokens.
 
 In the following examples, the final token is the one being predicted, and
 the diagram shows which tokens are masked out and which are taken into account
-for that prediction.
+for that prediction. The top row is the token-group sequence after masking, the bottom row
+is the raw token-group sequence.
 
 Predicted observations will take into account the previous observations, agents and actions.
 This is a simple relation which makes sure the dynamics in observations are explained
