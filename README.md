@@ -266,20 +266,26 @@ Actions capture the dynamics caused by the agent when striving towards their int
 Actions are simple, and are only conditioned on the immediate agent and intents
 which define them.
 
-```mermaid
-graph TB
-    subgraph ACTION_SEQ
-        direction LR
-        O1["|observation"]
-        A1["|agent"]
-        A2["agent|agent"]
-        I1["|intent"]
-        I2["intent|intent"]
-        ACT1["|action"]
-        ACT2["action|action"]:::highlight
-    end
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
-```
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>agent</td>
+        <td></td>
+        <td>intent</td>
+        <td></td>
+        <td style="background-color: lightgreen;">action</td>
+    </tr>
+    <tr>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td style="background-color: lightgreen;">action</td>
+    </tr>
+</table>
 
 ## Multi-agent Deconflicting
 
