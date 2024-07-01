@@ -155,28 +155,27 @@ Similarly as with multimodal large models tokens can have different types based 
 The token sequence example, each cell here designates a token group which can have
 a variable number of tokens of the same type:
 
-```mermaid
-graph TB
-    subgraph TOTAL_SEQ
-        direction LR
-        A1["..."]
-        O1["observation"]
-        A1["agent"]
-        A2["agent"]
-        END_A["end-agents"]
-        I1["intent"]
-        I2["intent"]
-        ACT1["action"]
-        ACT2["action"]
-        O2["observation"]
-        A3["agent"]
-        A4["agent"]
-        I3["intent"]
-        I4["intent"]
-        ACT3["action"]
-        ACT4["action"]
-    end
-```
+<table>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
+        <td">observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
+    </tr>
+</table>
 
 Note that everything starts from an observation token group, which is in reality a variable length
 number of tokens, for example text tokens or image patch tokens, appropriately position encoded.
@@ -198,22 +197,32 @@ Predicted observations will take into account the previous observations, agents 
 This is a simple relation which makes sure the dynamics in observations are explained
 by actions of a set of agents.
 
-```mermaid
-graph TB
-    subgraph OBSERVATION_SEQ
-        direction LR
-        A1["...|..."]
-        O1["observation|observation"]
-        A1["agent|agent"]
-        A2["agent|agent"]
-        I1["|intent"]
-        I2["|intent"]
-        ACT1["action|action"]
-        ACT2["action|action"]
-        O2["observation|observation"]:::highlight
-    end
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
-```
+<table>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>action</td>
+        <td>action</td>
+        <td style="background-color: lightgreen;">observation</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
+        <td style="background-color: lightgreen;">observation</td>
+    </tr>
+</table>
 
 Predicted agents will take into account the previous observations and agents.
 Agents are not supposed to change a lot over short periods of time, so there
@@ -224,16 +233,18 @@ Note that the `end-agents` special token is emitted by this relation, and can do
 as it can in principle know when there are enough agents emitted to explain the dynamics
 of the observations.
 
-```mermaid
-graph TB
-    subgraph AGENT_SEQ
-        direction LR
-        A1["...|..."]
-        O1["observation|observation"]
-        A1["agent|agent"]:::highlight
-    end
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
-```
+<table>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td style="background-color: lightgreen;">agent</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td style="background-color: lightgreen;">agent</td>
+    </tr>
+</table>
 
 Intents capture the way to control agents, what are their immediate objectives.
 The intent relation is conditioned on all the past sequences: observations,
@@ -241,26 +252,42 @@ agents, and actions, but only the agent this intent corresponds to
 after the last observation. The intents can be conditioned on the long history
 of the agent and other agents.
 
-```mermaid
-graph TB
-    subgraph INTENT_SEQ
-        direction LR
-        A1["...|..."]
-        O1["observation|observation"]
-        A1["agent|agent"]
-        A2["agent|agent"]
-        I1["intent|intent"]
-        I2["intent|intent"]
-        ACT1["action|action"]
-        ACT2["action|action"]
-        O2["observation|observation"]:
-        A3["|agent"]
-        A4["agent|agent"]
-        I3["|intent"]
-        I4["intent|intent"]:::highlight
-    end
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
-```
+<table>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td></td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
+        <td>observation</td>
+        <td></td>
+        <td>agent</td>
+        <td></td>
+        <td></td>
+        <td style="background-color: lightgreen;">intent</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
+        <td>observation</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td style="background-color: lightgreen;">intent</td>
+    </tr>
+</table>
 
 Actions capture the dynamics caused by the agent when striving towards their intents.
 Actions are simple, and are only conditioned on the immediate agent and intents
@@ -272,6 +299,7 @@ which define them.
         <td></td>
         <td>agent</td>
         <td></td>
+        <td></td>
         <td>intent</td>
         <td></td>
         <td style="background-color: lightgreen;">action</td>
@@ -280,6 +308,7 @@ which define them.
         <td>observation</td>
         <td>agent</td>
         <td>agent</td>
+        <td>end-agents</td>
         <td>intent</td>
         <td>intent</td>
         <td>action</td>
