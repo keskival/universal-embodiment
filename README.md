@@ -166,7 +166,7 @@ a variable number of tokens of the same type:
         <td>intent</td>
         <td>action</td>
         <td>action</td>
-        <td">observation</td>
+        <td>observation</td>
         <td>agent</td>
         <td>agent</td>
         <td>end-agents</td>
@@ -209,7 +209,7 @@ by actions of a set of agents.
         <td></td>
         <td>action</td>
         <td>action</td>
-        <td>**observation**</td>
+        <td>*observation*</td>
     </tr>
     <tr>
         <td>...</td>
@@ -221,7 +221,7 @@ by actions of a set of agents.
         <td>intent</td>
         <td>action</td>
         <td>action</td>
-        <td>**observation**</td>
+        <td>*observation*</td>
     </tr>
 </table>
 
@@ -238,12 +238,12 @@ of the observations.
     <tr>
         <td>...</td>
         <td>observation</td>
-        <td>**agent**</td>
+        <td>*agent*</td>
     </tr>
     <tr>
         <td>...</td>
         <td>observation</td>
-        <td>**agent**</td>
+        <td>*agent*</td>
     </tr>
 </table>
 
@@ -269,7 +269,7 @@ of the agent and other agents.
         <td>agent</td>
         <td></td>
         <td></td>
-        <td>**intent**</td>
+        <td>*intent*</td>
     </tr>
     <tr>
         <td>...</td>
@@ -286,7 +286,7 @@ of the agent and other agents.
         <td>agent</td>
         <td>end-agents</td>
         <td>intent</td>
-        <td>**intent**</td>
+        <td>*intent*</td>
     </tr>
 </table>
 
@@ -303,7 +303,7 @@ which define them.
         <td></td>
         <td>intent</td>
         <td></td>
-        <td>**action**</td>
+        <td>*action*</td>
     </tr>
     <tr>
         <td>observation</td>
@@ -313,7 +313,7 @@ which define them.
         <td>intent</td>
         <td>intent</td>
         <td>action</td>
-        <td>**action**</td>
+        <td>*action*</td>
     </tr>
 </table>
 
