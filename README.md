@@ -177,7 +177,7 @@ a variable number of tokens of the same type:
     </tr>
 </table>
 
-Note that everything starts from an observation token group, which is in reality a variable length
+Note that everything starts from an observation token group, which is in reality a variable
 number of tokens, for example text tokens or image patch tokens, appropriately position encoded.
 Token groups are appropriately encoded, and start by a special token which designates the end of
 the previous token group.
