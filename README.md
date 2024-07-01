@@ -317,6 +317,10 @@ which define them.
     </tr>
 </table>
 
+A stream of observations from datasets form the observation token groups, and the rest of the token
+groups are inferred by the model in-between. Losses only come from errors in predicting the next observations
+and regularization losses; there are no labels in nature for agents, intents and actions.
+
 ## Multi-agent Deconflicting
 
 A single agent typically affects only its immediate locality, whether it's in image space, or in any other signaling modality,
