@@ -150,6 +150,137 @@ So, the objectives become autoregressive prediction objectives with selective ma
 
 Similarly as with multimodal large models tokens can have different types based on modality, here tokens have different types which affect their masking-based autoregressive structure. It is an extension of modality-based token typing.
 
+### Token Sequence
+
+The token sequence example, each cell here designates a token group which can have
+a variable number of tokens of the same type:
+
+```mermaid
+graph TB
+    subgraph TOTAL_SEQ
+        direction LR
+        A1["..."]
+        O1["observation"]
+        A1["agent"]
+        A2["agent"]
+        END_A["end-agents"]
+        I1["intent"]
+        I2["intent"]
+        ACT1["action"]
+        ACT2["action"]
+        O2["observation"]
+        A3["agent"]
+        A4["agent"]
+        I3["intent"]
+        I4["intent"]
+        ACT3["action"]
+        ACT4["action"]
+    end
+```
+
+Note that everything starts from an observation token group, which is in reality a variable length
+number of tokens, for example text tokens or image patch tokens, appropriately position encoded.
+Token groups are appropriately encoded, and start by a special token which designates the end of
+the previous token group.
+
+After observation token group, agent token groups start, and end when a special `end-agents`
+token is emitted. Each agent emitted will require an intent and an action, and
+as many token groups of each are emitted.
+
+The autoregressive prediction is done in a masked fashion, so that depending
+on the type of the token to predict, we'll mask specific tokens.
+
+In the following examples, the final token is the one being predicted, and
+the diagram shows which tokens are masked out and which are taken into account
+for that prediction.
+
+Predicted observations will take into account the previous observations, agents and actions.
+This is a simple relation which makes sure the dynamics in observations are explained
+by actions of a set of agents.
+
+```mermaid
+graph TB
+    subgraph OBSERVATION_SEQ
+        direction LR
+        A1["...|..."]
+        O1["observation|observation"]
+        A1["agent|agent"]
+        A2["agent|agent"]
+        I1["|intent"]
+        I2["|intent"]
+        ACT1["action|action"]
+        ACT2["action|action"]
+        O2["observation|observation"]:::highlight
+    end
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
+```
+
+Predicted agents will take into account the previous observations and agents.
+Agents are not supposed to change a lot over short periods of time, so there
+are regularization loss terms which take care of invariancy of agents through time.
+This relation maintains that the set of agents needs to be inferrable from observations,
+but also maintain some approximate laws of agents being conserved over time.
+Note that the `end-agents` special token is emitted by this relation, and can do this
+as it can in principle know when there are enough agents emitted to explain the dynamics
+of the observations.
+
+```mermaid
+graph TB
+    subgraph AGENT_SEQ
+        direction LR
+        A1["...|..."]
+        O1["observation|observation"]
+        A1["agent|agent"]:::highlight
+    end
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
+```
+
+Intents capture the way to control agents, what are their immediate objectives.
+The intent relation is conditioned on all the past sequences: observations,
+agents, and actions, but only the agent this intent corresponds to
+after the last observation. The intents can be conditioned on the long history
+of the agent and other agents.
+
+```mermaid
+graph TB
+    subgraph INTENT_SEQ
+        direction LR
+        A1["...|..."]
+        O1["observation|observation"]
+        A1["agent|agent"]
+        A2["agent|agent"]
+        I1["intent|intent"]
+        I2["intent|intent"]
+        ACT1["action|action"]
+        ACT2["action|action"]
+        O2["observation|observation"]:
+        A3["|agent"]
+        A4["agent|agent"]
+        I3["|intent"]
+        I4["intent|intent"]:::highlight
+    end
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
+```
+
+Actions capture the dynamics caused by the agent when striving towards their intents.
+Actions are simple, and are only conditioned on the immediate agent and intents
+which define them.
+
+```mermaid
+graph TB
+    subgraph ACTION_SEQ
+        direction LR
+        O1["|observation"]
+        A1["|agent"]
+        A2["agent|agent"]
+        I1["|intent"]
+        I2["intent|intent"]
+        ACT1["|action"]
+        ACT2["action|action"]:::highlight
+    end
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:4px;
+```
+
 ## Multi-agent Deconflicting
 
 A single agent typically affects only its immediate locality, whether it's in image space, or in any other signaling modality,
@@ -166,6 +297,8 @@ generalize the experience it so extracts into ego control models.
 Multi-agent competitive deconflicting is a set of self-supervised objectives which allow the system to separate the explaining factors of the observation dynamics into a set of agent representations. Agent representations impose coherence on the intents which are conditioned by the agent and its history, which in turn impose coherence on the actions for each agent. Additionally, depending on signal modalities, there might be a need to impose connectedness and locality objectives for each agent.
 
 Hierarchical agents can be represented as compositions conditioned by the higher level representations.
+
+In practice this is something that happens within the observation prediction relation.
 
 ## Ego Control
 
