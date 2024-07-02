@@ -55,7 +55,7 @@ This isn't traditional reinforcement learning guided by sparse rewards. It would
 
 Did you know you don't have to use just plain autoregressive objective for token sequences?
 
-To implement destructuring in a token sequence models, we need to define special roles for specific tokens, define what parts of the token sequences can condition a specific output token (type-specific masking), and define separate models for each output token type with appropriate regularizations and information bottlenecks to maintain token roles.
+To implement destructuring in token sequence models, we need to define special roles for specific latent tokens, define what parts of the token sequences can condition a specific output token (type-specific masking), and define separate models for each output token type with appropriate regularizations and information bottlenecks to maintain token roles. This destructuring imposes an inductive bias which can also be utilized for controllability.
 
 ## Main Challenges
 
