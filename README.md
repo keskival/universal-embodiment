@@ -55,6 +55,8 @@ This isn't traditional reinforcement learning guided by sparse rewards. It would
 
 Did you know you don't have to use just plain autoregressive objective for token sequences?
 
+To implement destructuring in a token sequence models, we need to define special roles for specific tokens, define what parts of the token sequences can condition a specific output token (type-specific masking), and define separate models for each output token type with appropriate regularizations and information bottlenecks to maintain token roles.
+
 ## Main Challenges
 
 ### 1. Data from a living world
@@ -124,12 +126,14 @@ We will have the following kinds of tokens forming a sequence of agentic action:
 3. ACTION (a sequential embedding limited by an information bottleneck, which is roughly analogous to a chosen action.)
 4. OBSERVATION (a sequential embedding describing the world and changes in it.)
 
+OBSERVATION tokens are explicit and observable from the environment. All other tokens are latent, and destructure a multi-agentic inductive bias into token sequence.
+
 These tokens have inherent relations to each others, and inherent causations and correlations which can be used to train
 these embeddings and sequences with self-supervision:
-1. The AGENT, INTENT and OBSERVATION token sequences from the past wholly condition the subsequent ACTION tokens of the agent in question.
+1. The AGENT and INTENT token sequences from the past wholly condition the subsequent ACTION tokens of the agent in question.
 2. OBSERVATION tokens wholly condition an estimate for all the raw signal data received at the moment and in the immediate future. The raw signal data also conditions the observation tokens.
-3. ACTION tokens wholly condition the estimate of the causally following OBSERVATION tokens which relate to the agent, which basically segment the regions
-   of the observed signals which can be predicted by the agent's actions. This produces an outline of the agent's span in the signals,
+3. ACTION tokens wholly condition the estimate of the dynamics of the following OBSERVATION tokens which relate to the agent, which basically segment the regions
+   of the observed signals which can be predicted by the agent's actions, as far as they change from the previous observation tokens. This produces an outline of the agent's span in the signals,
    no matter if imagery, sound, or anything else. ACTION tokens are inherently causal, and predict the changes in the signals observed.
 
 The above list of relations is not exhaustive yet.
@@ -338,7 +342,7 @@ Multi-agent competitive deconflicting is a set of self-supervised objectives whi
 
 Hierarchical agents can be represented as compositions conditioned by the higher level representations.
 
-In practice this is something that happens within the observation prediction relation.
+In practice this is something that happens within the observation prediction relation. It would be natural to implement with cross attention type operations where the agent tokens attend competitively to the observation tokens.
 
 ## Ego Control
 
