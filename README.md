@@ -428,7 +428,7 @@ Each of these AGENT tokens will attend to the previous OBSERVATION token sequenc
 AGENT tokens will claim specific OBSERVATION tokens.
 
 This means that we'll force the AGENT token to represent the appearance of a single agent (among other things). The AGENT
-token needs to be able to condition an decoder which produces the tokens it attends to, and the set of all AGENT token decoders
+token needs to be able to condition a decoder which produces the tokens it attends to, and the set of all AGENT token decoders
 need to be able to produce the whole scene, that is, a sequence of OBSERVATION tokens relating to the current world.
 Since the sequence of OBSERVATION tokens probably cannot be made exactly unambiguous, we'll need to use a reconstruction loss
 which depends on the reconstruction of the current scene in the sensory input signal domains.
