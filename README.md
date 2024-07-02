@@ -233,8 +233,8 @@ by actions of a set of agents.
 
 Predicted agents will take into account the previous observations and agents.
 Agents are not supposed to change a lot over short periods of time, so there
-are regularization loss terms which take care of invariancy of agents through time.
-This relation maintains that the set of agents needs to be inferrable from observations,
+are regularization loss terms which take care of invariancy of agents through time. Actions chosen by agents can affect them, as they would typically change their outward appearance.
+This relation maintains that the set of agents needs to be inferrable from observations and past actions of agents,
 but also maintain some approximate laws of agents being conserved over time.
 Note that the `end-agents` special token is emitted by this relation, and can do this
 as it can in principle know when there are enough agents emitted to explain the dynamics
@@ -243,11 +243,25 @@ of the observations.
 <table>
     <tr>
         <td>...</td>
+        <td>agent</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>action</td>
+        <td></td>
         <td>observation</td>
         <td>*agent*</td>
     </tr>
     <tr>
         <td>...</td>
+        <td>agent</td>
+        <td>agent</td>
+        <td>end-agents</td>
+        <td>intent</td>
+        <td>intent</td>
+        <td>action</td>
+        <td>action</td>
         <td>observation</td>
         <td>*agent*</td>
     </tr>
