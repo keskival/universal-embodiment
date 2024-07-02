@@ -57,6 +57,8 @@ Did you know you don't have to use just plain autoregressive objective for token
 
 To implement destructuring in token sequence models, we need to define special roles for specific latent tokens, define what parts of the token sequences can condition a specific output token (type-specific masking), and define separate models for each output token type with appropriate regularizations and information bottlenecks to maintain token roles. This destructuring imposes an inductive bias which can also be utilized for controllability.
 
+In addition to masking, specific models use attentional layers to attend to specific entities in a fashion which maintains the inductive bias, for example agents would principally attend to their own representations in the past frames when inferring their next states.
+
 ## Main Challenges
 
 ### 1. Data from a living world
@@ -244,12 +246,12 @@ of the observations.
     <tr>
         <td>...</td>
         <td>agent</td>
-        <td></td>
+        <td>agent</td>
         <td></td>
         <td></td>
         <td></td>
         <td>action</td>
-        <td></td>
+        <td>action</td>
         <td>observation</td>
         <td>*agent*</td>
     </tr>
