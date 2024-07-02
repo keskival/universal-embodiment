@@ -198,6 +198,8 @@ the diagram shows which tokens are masked out and which are taken into account
 for that prediction. The top row is the token-group sequence after masking, the bottom row
 is the raw token-group sequence.
 
+Each of the following tables represent a single generative token prediction model. These models can share parameters, but are technically separate models. One sub-model predicts observation tokens, one agent tokens, one intent tokens and one action tokens. These models are combined together to produce the whole sequence prediction model where the errors backpropagate from the observation errors.
+
 Predicted observations will take into account the previous observations, agents and actions.
 This is a simple relation which makes sure the dynamics in observations are explained
 by actions of a set of agents.
