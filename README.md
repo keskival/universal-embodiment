@@ -373,7 +373,7 @@ doable with a separate model which tries to learn the control language and trans
 
 ## Asynchronicity
 
-Classical reinforcement learning is typically formulated as a synchronous sequence of state-action-reward, indeed derivimg the name of the SARSA algorithm from those.
+Classical reinforcement learning is typically formulated as a synchronous sequence of state-action-reward, indeed deriving the name of the SARSA algorithm from those.
 Here, we instead want the token sequences to be asynchronous.
 Asynchronous token sequences are driven by a stream of observation tokens. To support predictive objectives, the model can emit other tokens of agents, intents and actions. This is a simple asynchronous decomposition of causal dynamics in the sequence of observation tokens.
 
