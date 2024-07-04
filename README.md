@@ -488,6 +488,8 @@ Universal Embodiment
 - [Genie: Generative Interactive Environments](https://deepmind.google/research/publications/60474/)
 - [Recognizing Everything from All Modalities at Once: Grounded Multimodal Universal Information Extraction](https://arxiv.org/abs/2406.03701v1)
 - [Meta Large Language Model Compiler: Foundation Models of Compiler Optimization](https://ai.meta.com/research/publications/meta-large-language-model-compiler-foundation-models-of-compiler-optimization/)
+- [LLaRA: Supercharging Robot Learning Data for Vision-Language Policy](https://arxiv.org/abs/2406.20095)
+- [Commonsense Reasoning for Legged Robot Adaptation with Vision-Language Models](https://arxiv.org/abs/2407.02666)
 
 ## Related Posts
 
