@@ -4,6 +4,8 @@ Universal Embodiment is a rethinking of classical reinforcement learning princip
 mining of abundant third party experience in heterogeneous signals rather than naively leaning
 on ego experience alone.
 
+See: [Executive Summary](ExecutiveSummary.md)
+
 It is a way to train a foundation model for robotic control which isn't tied to any specific embodiment,
 but which can inhabit any robotic body or a machine opportunistically. It is based on in-context learning
 of control policies.
