@@ -6,6 +6,8 @@ on ego experience alone.
 
 See: [Executive Summary](ExecutiveSummary.md)
 
+![UniversalEmbodiment shown as a robot dog imitating a cheetah](UniversalEmbodiment.jpg)
+
 It is a way to train a foundation model for robotic control which isn't tied to any specific embodiment,
 but which can inhabit any robotic body or a machine opportunistically. It is based on in-context learning
 of control policies.
