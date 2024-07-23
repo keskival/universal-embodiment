@@ -208,12 +208,18 @@ Each of the following tables represent a single generative token prediction mode
 
 Predicted observations will take into account the previous observations, agents and actions.
 This is a simple relation which makes sure the dynamics in observations are explained
-by actions of a set of agents.
+by actions of a set of agents. In principle this model is structured so that it predicts the *delta*
+of the preceding observation, based on the set of agents and their chosen actions.
+
+The delta mutation operation (DMO) is a static model which mutates a given sequence of tokens based on
+delta tokens given as the other input. Intuitively, the delta tokens are additions, deletions
+and mutations of tokens in the base token sequence. The non-parametrized model
+implementing the sequence mutation needs to be rich enough, and differentiable, but otherwise
+it's somewhat arbitrary. This operation is described in more detail in a separate subsection.
 
 <table>
     <tr>
-        <td>...</td>
-        <td>observation</td>
+        <td>observation [1]</td>
         <td>agent</td>
         <td>agent</td>
         <td></td>
@@ -221,7 +227,7 @@ by actions of a set of agents.
         <td></td>
         <td>action</td>
         <td>action</td>
-        <td>*observation*</td>
+        <td>*delta* -> DMO(observation [1], *delta*) = *observation*</td>
     </tr>
     <tr>
         <td>...</td>
@@ -239,24 +245,37 @@ by actions of a set of agents.
 
 Predicted agents will take into account the previous observations and agents.
 Agents are not supposed to change a lot over short periods of time, so there
-are regularization loss terms which take care of invariancy of agents through time. Actions chosen by agents can affect them, as they would typically change their outward appearance.
+are regularization loss terms which take care of invariancy of agents through time.
+We will use a delta mutation operation here as well, but only for the agents selected
+for conservation.
+
+This means that the agent token groups produced will need structure which first selects
+which agent token groups in the past sequence are still relevant for future predictions.
+The relevant token groups are each conserved and modified by a delta mutation operation.
+New agent token groups can also be emitted here.
+
+Actions chosen by agents can affect them, as they would typically change their outward appearance.
 This relation maintains that the set of agents needs to be inferrable from observations and past actions of agents,
 but also maintain some approximate laws of agents being conserved over time.
 Note that the `end-agents` special token is emitted by this relation, and can do this
 as it can in principle know when there are enough agents emitted to explain the dynamics
 of the observations.
 
+The example below shows one agent [2] being dropped out, one maintained and mutated [1],
+and one new one being spawned *agent*.
+
 <table>
     <tr>
         <td>...</td>
-        <td>agent</td>
-        <td>agent</td>
+        <td>agent [1]</td>
+        <td>agent [2]</td>
         <td></td>
         <td></td>
         <td></td>
         <td>action</td>
         <td>action</td>
         <td>observation</td>
+        <td>*delta* -> DMO(agent[1], *delta*) = *agent*</td>
         <td>*agent*</td>
     </tr>
     <tr>
@@ -270,6 +289,7 @@ of the observations.
         <td>action</td>
         <td>observation</td>
         <td>*agent*</td>
+        <td>*agent*</td>
     </tr>
 </table>
 
@@ -279,6 +299,8 @@ agents, and actions, but only the agent this intent corresponds to
 after the last observation. The intents can be conditioned on the long history
 of the agent and other agents.
 
+Intents are also conserved over time, so DMO operations are used here as well.
+
 <table>
     <tr>
         <td>...</td>
@@ -286,8 +308,8 @@ of the agent and other agents.
         <td>agent</td>
         <td>agent</td>
         <td></td>
-        <td>intent</td>
-        <td>intent</td>
+        <td>intent [1]</td>
+        <td>intent [2]</td>
         <td>action</td>
         <td>action</td>
         <td>observation</td>
@@ -295,7 +317,7 @@ of the agent and other agents.
         <td>agent</td>
         <td></td>
         <td></td>
-        <td>*intent*</td>
+        <td>*delta* -> DMO(intent [2], *delta*) = *intent*</td>
     </tr>
     <tr>
         <td>...</td>
@@ -319,6 +341,8 @@ of the agent and other agents.
 Actions capture the dynamics caused by the agent when striving towards their intents.
 Actions are simple, and are only conditioned on the immediate agent and intents
 which define them.
+
+Actions aren't conserved over time, so we don't need to use delta mutation operations here.
 
 <table>
     <tr>
@@ -346,6 +370,23 @@ which define them.
 A stream of observations from datasets form the observation token groups, and the rest of the token
 groups are inferred by the model in-between. Losses only come from errors in predicting the next observations
 and regularization losses; there are no labels in nature for agents, intents and actions.
+
+## Delta Mutation Operation
+
+Delta Mutation Operation is a work horse in the model architecture to maintain some level of
+invariancy over time for different entities and concepts.
+
+It is an unparametrized operation which transforms a sequence of tokens into a similar sequence of tokens
+based on a delta token sequence, in a differentiable fashion, so that tokens of the initial sequence
+can be selected, dropped out or mutated, and new tokens can be added.
+
+One way to implement this is using attentional mechanism which first attends to base token sequence
+with a delta token, to select a token (cross-attention), and then potentially mutates it based on a subsequent delta token,
+and then emits the result. To emit new tokens, the base token sequence can simply be augmented by some set of standard
+prefix tokens which can be emitted to the output by attending to them and mutating them similarly.
+
+Tokens are dropped from the base sequence by a simple mechanism of not attending to any of them,
+so they don't reproduce themselves to the Delta Mutation Operation output sequence.
 
 ## Multi-agent Deconflicting
 
