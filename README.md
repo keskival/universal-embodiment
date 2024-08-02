@@ -535,6 +535,7 @@ Universal Embodiment
 - [Meta Large Language Model Compiler: Foundation Models of Compiler Optimization](https://ai.meta.com/research/publications/meta-large-language-model-compiler-foundation-models-of-compiler-optimization/)
 - [LLaRA: Supercharging Robot Learning Data for Vision-Language Policy](https://arxiv.org/abs/2406.20095)
 - [Commonsense Reasoning for Legged Robot Adaptation with Vision-Language Models](https://arxiv.org/abs/2407.02666)
+- [Three Dogmas of Reinforcement Learning](https://arxiv.org/abs/2407.10583)
 
 ## Related Posts
 
