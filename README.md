@@ -524,9 +524,12 @@ Universal Embodiment
 @article{keskival2024universal,
   title={Universal Embodiment},
   author={Keski-Valkama, Tero},
-  year={2024}
+  year={2024},
+  doi={10.5281/zenodo.13207304}
 }
 ```
+
+[![DOI](https://zenodo.org/badge/812237200.svg)](https://zenodo.org/doi/10.5281/zenodo.13207304)
 
 ## References
 
