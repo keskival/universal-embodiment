@@ -1,9 +1,3 @@
-# Moved
-
-This repository and work has been moved to CosmoDing:
-
-- https://github.com/CosmoDing-AI/universal-embodiment
-
 # Universal Embodiment
 
 Universal Embodiment is a rethinking of classical reinforcement learning principles to be based on
