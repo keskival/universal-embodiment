@@ -4,8 +4,6 @@ Universal Embodiment is a rethinking of classical reinforcement learning princip
 mining of abundant third party experience in heterogeneous signals rather than naively leaning
 on ego experience alone.
 
-See: [Executive Summary](https://github.com/CosmoDing-AI/universal-embodiment/blob/main/ExecutiveSummary.md)
-
 ![UniversalEmbodiment shown as a robot dog imitating a cheetah](UniversalEmbodiment.jpg)
 
 It is a way to train a foundation model for robotic control which isn't tied to any specific embodiment,
