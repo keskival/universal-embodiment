@@ -21,6 +21,8 @@ do if they want. And they do that in the demonstrations.
 
 Maybe we can make the embodiment grow as it eats herbs, and a goal would be to become longer.
 
+Let's make an even simpler version where the agents are already encoded as a sequence of agents and intents and observations.
+
 ## Stage 1 - Passive learning
 
 > "What are the laws of this world from my subjective experience?"
