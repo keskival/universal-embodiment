@@ -12,6 +12,13 @@ succeed in that world.
 Goals shouldn't be based on rewards, because rewards aren't observable.
 They should be based on intents.
 
+The basic scheme should be based on static pixels of a specific color
+spawning, representing herbs, and pixels of another color
+representing herbivores to eat them.
+
+There are no rewards from eating the herbs. It's just something herbivores
+do if they want. And they do that in the demonstrations.
+
 ## Stage 1 - Passive learning
 
 At this stage we show the system a large number of trajectories
