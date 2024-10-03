@@ -23,7 +23,7 @@ Maybe we can make the embodiment grow as it eats herbs, and a goal would be to b
 
 Let's make an even simpler version where the agents are already encoded as a sequence of agents and intents and observations. Then we don't need to extract and characterize the agencies.
 
-We can also have a variant where the controls are transparent and the agent doesn't need to learn the control model. It can already see what "buttons" each other agent pressed.
+We can also have a variant where the controls are transparent and the agent doesn't need to learn the control model. It can already see what "buttons" each other agent pressed. This becomes just a slight generalization of imitation learning.
 
 ## Stage 1 - Passive learning
 
