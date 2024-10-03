@@ -41,3 +41,11 @@ The ego agent will be provided a representation of the goal to pursue.
 Once it has learned the embodiment, it will need to start pursuing its objective.
 
 It is suggested that the agent can utilize both the agentic world model and its own control model to plan and pursue given objectives in a sensible and efficient fashion with minimal trial and error.
+
+## Open Questions
+
+1. How to encode the objectives? How to make the agent understand them?
+2. What dynamics should the virtual grid world implement?
+3. What kinds of variability in the dynamics we want to implement to make hard-coded solutions infeasible?
+4. How to represent control, i.e. the action space?
+5. 
