@@ -21,6 +21,8 @@ do if they want. And they do that in the demonstrations.
 
 ## Stage 1 - Passive learning
 
+>> "What are the laws of this world?"
+
 At this stage we show the system a large number of trajectories
 in a virtual ecosystem with different kinds of agents with varying goals
 and affordances.
@@ -29,12 +31,16 @@ It is suggested that learning an agentic world model from this data should help 
 
 ## Stage 2 a - Embody
 
+>> "Which one am I? How do I move?"
+
 The ego agent is embodied to a random agent embodiment in a simulated ecosystem, and
 it needs to learn a mapping between its outputs and agent's movements.
 
 It is suggested that the agent can leverage its agentic world model and control counterfactuals from it to understand what its controls cause. Using causal learning of the controls will help the agent in the subsequent stage.
 
 ## Step 2 b - Pursue
+
+>> "I must reach my goal."
 
 The ego agent will be provided a representation of the goal to pursue.
 
@@ -48,4 +54,4 @@ It is suggested that the agent can utilize both the agentic world model and its 
 2. What dynamics should the virtual grid world implement?
 3. What kinds of variability in the dynamics we want to implement to make hard-coded solutions infeasible?
 4. How to represent control, i.e. the action space?
-5. 
+
