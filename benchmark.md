@@ -21,7 +21,7 @@ do if they want. And they do that in the demonstrations.
 
 ## Stage 1 - Passive learning
 
-> "What are the laws of this world?"
+> "What are the laws of this world from my subjective experience?"
 
 At this stage we show the system a large number of trajectories
 in a virtual ecosystem with different kinds of agents with varying goals
