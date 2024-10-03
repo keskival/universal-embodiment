@@ -19,6 +19,8 @@ representing herbivores to eat them.
 There are no rewards from eating the herbs. It's just something herbivores
 do if they want. And they do that in the demonstrations.
 
+Maybe we can make the embodiment grow as it eats herbs, and a goal would be to become longer.
+
 ## Stage 1 - Passive learning
 
 > "What are the laws of this world from my subjective experience?"
