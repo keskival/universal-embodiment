@@ -25,10 +25,14 @@ At this stage we show the system a large number of trajectories
 in a virtual ecosystem with different kinds of agents with varying goals
 and affordances.
 
+It is suggested that learning an agentic world model from this data should help in the next stages.
+
 ## Stage 2 a - Embody
 
 The ego agent is embodied to a random agent embodiment in a simulated ecosystem, and
 it needs to learn a mapping between its outputs and agent's movements.
+
+It is suggested that the agent can leverage its agentic world model and control counterfactuals from it to understand what its controls cause. Using causal learning of the controls will help the agent in the subsequent stage.
 
 ## Step 2 b - Pursue
 
@@ -36,5 +40,4 @@ The ego agent will be provided a representation of the goal to pursue.
 
 Once it has learned the embodiment, it will need to start pursuing its objective.
 
-
-
+It is suggested that the agent can utilize both the agentic world model and its own control model to plan and pursue given objectives in a sensible and efficient fashion with minimal trial and error.
