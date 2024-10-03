@@ -44,7 +44,7 @@ It is suggested that the agent can leverage its agentic world model and control 
 
 > "I must reach my goal."
 
-The ego agent will be provided a representation of the goal to pursue.
+The ego agent will be provided a representation of the goal to pursue. This should probably be implicit and depend on the body recognized as self. So e.g. blue things do certain thing in the passive observation, red things do another thing, and the ego agent needs to imitate, or behave natural.
 
 Once it has learned the embodiment, it will need to start pursuing its objective.
 
