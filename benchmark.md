@@ -3,6 +3,15 @@
 We aim to define a minimal benchmark which measures a capability of an agent in harvesting third party
 experience and utilize it.
 
+Let's make it a minimal grid world with pixels as entities.
+
+One way to use it is to first show a demonstration how the rules
+of the world work, and then test how fast the agent learns to
+succeed in that world.
+
+Goals shouldn't be based on rewards, because rewards aren't observable.
+They should be based on intents.
+
 ## Stage 1 - Passive learning
 
 At this stage we show the system a large number of trajectories
