@@ -21,7 +21,7 @@ do if they want. And they do that in the demonstrations.
 
 ## Stage 1 - Passive learning
 
->> "What are the laws of this world?"
+> "What are the laws of this world?"
 
 At this stage we show the system a large number of trajectories
 in a virtual ecosystem with different kinds of agents with varying goals
@@ -31,7 +31,7 @@ It is suggested that learning an agentic world model from this data should help 
 
 ## Stage 2 a - Embody
 
->> "Which one am I? How do I move?"
+> "Which one am I? How do I move?"
 
 The ego agent is embodied to a random agent embodiment in a simulated ecosystem, and
 it needs to learn a mapping between its outputs and agent's movements.
@@ -40,7 +40,7 @@ It is suggested that the agent can leverage its agentic world model and control 
 
 ## Step 2 b - Pursue
 
->> "I must reach my goal."
+> "I must reach my goal."
 
 The ego agent will be provided a representation of the goal to pursue.
 
