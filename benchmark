@@ -1,0 +1,17 @@
+# Mining Multi-agent Experience Benchmark
+
+We aim to define a minimal benchmark which measures a capability of an agent in harvesting third party
+experience and utilize it.
+
+## Stage 1 - Passive learning
+
+At this stage we show the system a large number of trajectories
+in a virtual ecosystem with different kinds of agents with varying goals
+and affordances.
+
+## Stage 2 - Embody
+
+The ego agent is embodied to a random agent embodiment in a simulated ecosystem, and
+it needs to learn a mapping between its outputs and agent's movements.
+
+The ego agent will be provided a representation of the goal to pursue.
