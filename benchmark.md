@@ -25,6 +25,8 @@ Let's make an even simpler version where the agents are already encoded as a seq
 
 We can also have a variant where the controls are transparent and the agent doesn't need to learn the control model. It can already see what "buttons" each other agent pressed. This becomes just a slight generalization of imitation learning.
 
+Let's make it even simpler, go all the way to the basics. Make it a line world, not a grid world. There are only two choices for movement, left or right, and the agent is shown traces where another agent makes preference selections of which color pixels they want to eat.
+
 ## Stage 1 - Passive learning
 
 > "What are the laws of this world from my subjective experience?"
