@@ -10,18 +10,25 @@ def _get_preference():
     return 1
 
 
-def _get_color_agent():
+def _get_color(start, delta):
     """A color for an agent or prey."""
-    color = (1.0, 1.0, 1.0)
+    color = np.array(start)
+    delta = np.array(delta)
     while (True):
         yield color
-        color = color + (0.2, 0.3, 0.4)
-        # TODO
+        color = (color + delta) % 256
+
+
+def _get_color_agent():
+    """A color for an agent."""
+    while (True):
+        yield _get_color([10, 240, 70], [5, 15, 44])
 
 
 def _get_color_prey():
-    """A color for an agent or prey."""
-    return (1.0, 1.0, 1.0)
+    """A color for a prey."""
+    while (True):
+        yield _get_color([140, 40, 20], [58, 23, 104])
 
 
 class World():
