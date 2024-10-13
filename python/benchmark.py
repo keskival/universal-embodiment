@@ -4,10 +4,15 @@ different reward preferences (positive or negative) for each of
 the m prey types.
 The agent types and the prey types have random RGB colors associated."""
 
+import numpy as np
 
-def _get_preference():
+
+rng = np.random.default_rng()
+
+
+def _get_preferences(num_prey_types: int):
     """The reward/penalty for eating this prey type."""
-    return 1
+    return rng.uniform(-1, 1, num_prey_types)
 
 
 def _get_color(start, delta):
@@ -39,7 +44,7 @@ class World():
         self.num_prey_types = num_prey_types
         self.size_world = size_world
 
-        self.rules = [[_get_preference() for prey_type in range(num_prey_types)] for agent_type in range(num_agent_types)]
+        self.rules = [_get_preferences(num_prey_types) for agent_type in range(num_agent_types)]
         self.agent_colors = [_get_color_agent() for agent_type in range(num_agent_types)]
         self.prey_colors = [_get_color_prey() for agent_type in range(num_agent_types)]
 
