@@ -46,7 +46,7 @@ class World():
 
         self.rules = [_get_preferences(num_prey_types) for agent_type in range(num_agent_types)]
         self.agent_colors = [_get_color_agent() for agent_type in range(num_agent_types)]
-        self.prey_colors = [_get_color_prey() for agent_type in range(num_agent_types)]
+        self.prey_colors = [_get_color_prey() for prey_type in range(num_prey_types)]
 
 
 if __name__ == "main":
