@@ -45,6 +45,7 @@ def _get_color_prey():
 def get_best_choice(world) -> tuple[float, list]:
     """Depth first search. Returns the tuple of final score and a deque of all the moves to the end."""
     choices = []
+    # FIXME: There's a bug here. Add some automatic tests and fix.
     if len(world.prey_positions) > 0:
         # There are prey left.
         preys_left_of_agent = [prey_position for prey_position in world.prey_positions if prey_position < world.agent_position]
