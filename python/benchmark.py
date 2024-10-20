@@ -7,6 +7,8 @@ The agent types and the prey types have random RGB colors associated."""
 import numpy as np
 import random
 from PIL import Image
+import copy
+from collections import deque
 
 
 rng = np.random.default_rng()
@@ -40,6 +42,56 @@ def _get_color_prey():
         yield next(prey_generator)
 
 
+def get_best_choice(world) -> tuple[float, list]:
+    """Depth first search. Returns the tuple of final score and a deque of all the moves to the end."""
+    choices = []
+    if len(world.prey_positions) > 0:
+        # There are prey left.
+        preys_left_of_agent = [prey_position for prey_position in world.prey_positions if prey_position < world.agent_position]
+        preys_right_of_agent = [prey_position for prey_position in world.prey_positions if prey_position > world.agent_position]
+        if len(preys_left_of_agent) > 0:
+            # We have an option to take the prey on the left side.
+            prey_position = max(preys_left_of_agent)
+            move = prey_position - world.agent_position
+            next_world_state = world.copy()
+            next_world_state.move(move)
+            choices.append((move, next_world_state))
+        if len(preys_right_of_agent) > 0:
+            # We have an option to take the prey on the right side.
+            prey_position = max(preys_right_of_agent)
+            move = prey_position - world.agent_position
+            next_world_state = world.copy()
+            next_world_state.move(move)
+            choices.append((move, next_world_state))
+        # Note that in running the plan we need to take multi-step moves as single moves.
+
+    if len(choices) == 0:
+        return (world.total_score, deque())
+    score_before_this = world.total_score
+    best_choice = None
+    for choice in choices:
+        (move, next_world) = choice
+        # Choices are tuples of move and resulting world.
+        # best choices are tuples of score and list of moves to the end.
+        total_score, list_of_moves = get_best_choice(next_world)
+        list_of_moves.appendleft(move)
+        best_choice_for_this_path = (total_score, list_of_moves)
+        if total_score < score_before_this:
+            # A plan which reduces total score is not valid.
+            continue
+        if best_choice is None or best_choice[0] < total_score:
+            best_choice = best_choice_for_this_path
+        elif best_choice[0] == total_score:
+            # We choose the shorter path in ties.
+            if len(best_choice[1]) > len(best_choice_for_this_path[1]):
+                best_choice = best_choice_for_this_path
+    if best_choice is not None:
+        # Returning the best choice.
+        return best_choice
+    else:
+        return (world.total_score, deque())
+
+
 class Rules():
     """Defines the world rules."""
     
@@ -69,6 +121,7 @@ class World():
         self.agent_type = random.randint(0, rules.num_agent_types - 1)
         self.prey_types = np.random.randint(0, rules.num_prey_types - 1, num_prey)
         self.total_score = 0.0
+        self.solution = None
     
     def get_diagram(self) -> np.array:
         """Returns a visualizable diagram of the world state."""
@@ -88,17 +141,41 @@ class World():
             if prey_position == new_position:
                 # We eat this prey.
                 prey_type = self.prey_types[prey_index]
-                prey_value = self.rules.preferences[prey_type]
+                prey_value = self.rules.preferences[self.agent_type][prey_type]
                 self.total_score += prey_value
                 del(self.prey_positions[prey_index])
                 self.prey_types = np.delete(self.prey_types, prey_index)
         self.agent_position = new_position
 
-    def get_optimal_move(self) -> int:
+    def copy(self):
+        """Clones the world state.
+        Useful for the planner."""
+        return copy.deepcopy(self)
+
+    def get_optimal_move(self) -> int | None:
         """Returns either -1 or +1, for left and right respectively
-        corresponding to the optimal move for the agent."""
-        # TODO
-        return random.sample([-1, 1], 1)[0]
+        corresponding to the optimal move for the agent.
+        Returns None when no moves are left."""
+        # The planner has a tree of options where at each node it has:
+        # 1. Take the prey left of the agent
+        # 2. Take the prey right of the agent
+        # 3. End
+        # We'll traverse the whole tree and choose the best path.
+        if self.solution is None:
+            score_solution = get_best_choice(self)
+            print(score_solution)
+            self.solution = score_solution[1]
+        # We need to peek the left-most plan item, and its sign is the move.
+        # Then we'll need to decrement its absolute value by one, and if
+        # it becomes zero, pop it out.
+        if len(self.solution) == 0:
+            return None
+        move = np.sign(self.solution[0])
+        self.solution[0] -= move
+        if self.solution[0] == 0:
+            self.solution.popleft()
+        return move
+
 
 if __name__ == "__main__":
     rules = Rules(num_agent_types=5, num_prey_types=5, size_world=10)
@@ -112,6 +189,8 @@ if __name__ == "__main__":
         frames.append(frame)
         for step in range(num_steps):
             move = world.get_optimal_move()
+            if move is None:
+                break
             world.move(move)
             frame = world.get_diagram()
             frames.append(frame)
