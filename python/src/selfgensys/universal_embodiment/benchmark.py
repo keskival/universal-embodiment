@@ -25,7 +25,8 @@ def _get_color(start, delta):
     delta = np.array(delta, dtype=np.uint8)
     while (True):
         yield color
-        color = (color + delta) % 256
+        # Color is already uint8 so overflows well without remainder.
+        color = color + delta
 
 
 def _get_color_agent():
