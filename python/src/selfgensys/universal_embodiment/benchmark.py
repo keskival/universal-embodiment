@@ -45,7 +45,8 @@ def _get_color_prey():
 
 def get_best_choice(world) -> tuple[float, list]:
     """Depth first search. Returns the tuple of final score and a deque of all the moves to the end."""
-    choices = []
+    # There is always a choice to do nothing, to return rewards so far.
+    choices = [(None, world.copy())]
     if len(world.prey_positions) > 0:
         # There are prey left.
         preys_left_of_agent = [prey_position for prey_position in world.prey_positions if prey_position < world.agent_position]
@@ -66,31 +67,26 @@ def get_best_choice(world) -> tuple[float, list]:
             choices.append((move, next_world_state))
         # Note that in running the plan we need to take multi-step moves as single moves.
 
-    if len(choices) == 0:
-        return (world.total_score, deque())
-    score_before_this = world.total_score
     best_choice = None
     for choice in choices:
         (move, next_world) = choice
         # Choices are tuples of move and resulting world.
         # best choices are tuples of score and list of moves to the end.
-        total_score, list_of_moves = get_best_choice(next_world)
-        list_of_moves.appendleft(move)
-        best_choice_for_this_path = (total_score, list_of_moves)
-        if total_score < score_before_this:
-            # A plan which reduces total score is not valid.
-            continue
+        if move is None:
+            total_score = world.total_score
+            list_of_moves = deque()
+        else:
+            total_score, list_of_moves = get_best_choice(next_world)
+            list_of_moves.appendleft(move)
+        best_path_for_this_choice = copy.deepcopy((total_score, list_of_moves))
         if best_choice is None or best_choice[0] < total_score:
-            best_choice = best_choice_for_this_path
+            best_choice = best_path_for_this_choice
         elif best_choice[0] == total_score:
             # We choose the shorter path in ties.
-            if len(best_choice[1]) > len(best_choice_for_this_path[1]):
-                best_choice = best_choice_for_this_path
-    if best_choice is not None:
-        # Returning the best choice.
-        return best_choice
-    else:
-        return (world.total_score, deque())
+            if len(best_choice[1]) > len(best_path_for_this_choice[1]):
+                best_choice = best_path_for_this_choice
+    # Returning the best choice.
+    return best_choice
 
 
 class Rules():
