@@ -28,6 +28,8 @@ Since large models are data-defined, and this isn't an exception, this could be 
 
 This framework has applications in all complex and unstructured environments, at least in following domains:
 - Space, ocean, underground exploration
+- Autonomous traffic
+- Domestic work
 - Disasters and rescue
 - Military and defence
 
