@@ -38,8 +38,6 @@ contact the author [Tero Keski-Valkama](https://www.linkedin.com/in/terokeskival
 will need data, compute and people, which means a capital investment in the scale of 16 M€ to get properly
 started, and 160 M€ for a runway of 3-5 years to scale up and build prototypes.
 
-We have a founder team already set up.
-
 ## General Principles
 
 All highly developed animals learn from the experience of others, whether others are of the same species, individuals of totally
