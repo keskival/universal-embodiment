@@ -4,7 +4,12 @@ Universal Embodiment is a rethinking of classical reinforcement learning princip
 mining of abundant third party experience in heterogeneous signals rather than naively leaning
 on ego experience alone.
 
-See: [Executive Summary](ExecutiveSummary.md)
+It pushes the envelope in physical foundation models and robotic foundation models in two main ways:
+
+1. Removing the ego-learning bottleneck and allowing agents to learn from observed third-party experience, and
+2. Enabling in-context learning of embodiment control and dynamics.
+
+These two innovations are intertwined.
 
 ![UniversalEmbodiment shown as a robot dog imitating a cheetah](UniversalEmbodiment.jpg)
 
