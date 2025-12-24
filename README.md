@@ -546,6 +546,7 @@ Universal Embodiment
 - [Three Dogmas of Reinforcement Learning](https://arxiv.org/abs/2407.10583)
 - [OMNI-EPIC:
 Open-endedness via Models of human Notions of Interestingness with Environments Programmed in Code](https://github.com/maxencefaldor/omni-epic)
+- [MoCapAnything: Unified 3D Motion Capture for Arbitrary Skeletons from Monocular Videos](https://animotionlab.github.io/MoCapAnything)
 
 ## Related Posts
 
